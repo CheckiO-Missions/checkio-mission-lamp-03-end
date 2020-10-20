@@ -1,0 +1,41 @@
+<!-- Describe task in general -->
+
+<p><i>
+    Третьей миссией серией лампочек я хочу выделить отдельно процес, а отдельно период наблюдения за этим процессом
+</i></p>
+
+<p>
+    В предыдущей миссий был введен параметр start_watching, а в этой end_watching, который говорит время, когда необходимо закончить наблюдение. Если он не пререданн, значит миссия работает как и в предыдущей версии, без ограничения наблюдения
+</p>
+
+<p style="text-align: center;">
+    <img  title="example" src="{{MEDIA}}example.png" alt="example" style="max-height: 83px"/>
+</p>
+
+<!-- Explain input and output values -->
+<p>
+    <strong>Input: </strong> Two arguments. Both are ints.
+</p>
+
+<p>
+    <strong>Output: </strong> Int. 
+</p>
+
+
+<!-- Give some usage examples -->
+<div class="for_info_only">
+    <p>
+        <strong>Example:</strong>
+    </p>
+
+{% if interpreter.slug == "js-node" %}
+<pre class="brush: javascript">sumTwo(2, 3) == 5
+sumTwo(5, 7) == 12
+</pre>
+{% else %}
+<pre class="brush: python">sum_two(2, 3) == 5
+sum_two(5, 7) == 12
+</pre>
+{% endif %}
+</div>
+
