@@ -8,17 +8,21 @@
     In the previous mission, the start_watching parameter was introduced, and in this one - the end_watching parameter, which tells the time when it’s necessary to end the observation. If it’s not passed, the mission works as in the previous version, with no observation time limit.
 </p>
 
-<p style="text-align: center;">
-    <img  title="example" src="{{MEDIA}}example.png" alt="example" style="max-height: 83px"/>
+<p>One more update is that amount of elements (button clicks) can be odd (previously there was a precondition, that the amount of elelemts is always even)</p>
+
+<p style="text-align: center;" class="for_info_only">
+    <img  title="example" src="{{MEDIA}}composition.gif" alt="example" style="max-height: 400px"/>
 </p>
 
 <!-- Explain input and output values -->
+
+<!-- Explain input and output values -->
 <p>
-    <strong>Input: </strong> Two arguments. Both are ints.
+    <strong>Input: </strong> Three arguments and only first one is required. The first one is {% if is_js %}array of Date objects{% else %}A list of datetime objects{% endif %}, the second one and the third one iare {% if is_js %}Date objects{% else %}datetime objects{% endif %}.
 </p>
 
 <p>
-    <strong>Output: </strong> An int. 
+    <strong>Output: </strong> Amount of seconds as an integer. 
 </p>
 
 
@@ -29,13 +33,63 @@
     </p>
 
 {% if interpreter.slug == "js-node" %}
-<pre class="brush: javascript">sumTwo(2, 3) == 5
-sumTwo(5, 7) == 12
+<pre class="brush: javascript">sumLight([
+    new Date(2015, 1, 12, 10, 0, 0),
+    new Date(2015, 1, 12, 10, 10, 10),
+    new Date(2015, 1, 12, 11, 0, 0),
+],
+new Date(2015, 1, 12, 10, 10, 0),
+new Date(2015, 1, 12, 11, 0, 10)) == 20
+
+sumLight([
+    new Date(2015, 1, 12, 10, 0, 0),
+],
+new Date(2015, 1, 12, 9, 9, 0),
+new Date(2015, 1, 12, 10, 0, 0)) == 0
+
+sumLight([
+    new Date(2015, 1, 12, 10, 0, 0),
+    new Date(2015, 1, 12, 10, 10, 10),
+    new Date(2015, 1, 12, 11, 0, 0),
+    new Date(2015, 1, 12, 11, 10, 10),
+],
+new Date(2015, 1, 12, 9, 0, 0),
+new Date(2015, 1, 12, 10, 5, 0)) == 300
 </pre>
 {% else %}
-<pre class="brush: python">sum_two(2, 3) == 5
-sum_two(5, 7) == 12
+<pre class="brush: python">sum_light([
+    datetime(2015, 1, 12, 10, 0, 0),
+    datetime(2015, 1, 12, 10, 10, 10),
+    datetime(2015, 1, 12, 11, 0, 0),
+],
+datetime(2015, 1, 12, 10, 10, 0),
+datetime(2015, 1, 12, 11, 0, 10)) == 20
+
+sum_light([
+    datetime(2015, 1, 12, 10, 0, 0),
+],
+datetime(2015, 1, 12, 9, 9, 0),
+datetime(2015, 1, 12, 10, 0, 0)) == 0
+
+sum_light([
+    datetime(2015, 1, 12, 10, 0, 0),
+    datetime(2015, 1, 12, 10, 10, 10),
+    datetime(2015, 1, 12, 11, 0, 0),
+    datetime(2015, 1, 12, 11, 10, 10),
+],
+datetime(2015, 1, 12, 9, 0, 0),
+datetime(2015, 1, 12, 10, 5, 0)) == 300
 </pre>
 {% endif %}
 </div>
 
+
+<p>
+    <strong>Precondition:</strong>
+</p>
+<ul>
+    <li><i>The array of pressing the button is always sorted in ascending order</i></li>
+    <li><i>The array of pressing the button has no repeated elements (which means the result should always be bigger than 0)</i></li>
+    <li><i>Minimum possible date is 1970-01-01</i></li>
+    <li><i>Minimum possible date is 202020-01-01</i></li>
+</ul>
