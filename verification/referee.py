@@ -47,14 +47,14 @@ def cover(func, in_data):
 all_datetime_js = '''
 function cover(func, in_data) {
     var els = in_data[0].map(function(ee) {return new Date(ee[0], ee[1], ee[2], ee[3], ee[4], ee[5])});
-    var start_watching;
+    var start_watching, end_watching;
     if (in_data.length > 1) {
         start_watching = new Date(in_data[1][0], in_data[1][1], in_data[1][2], in_data[1][3], in_data[1][4], in_data[1][5]);
     }
     if (in_data.length > 2) {
-        start_watching = new Date(in_data[2][0], in_data[2][1], in_data[2][2], in_data[2][3], in_data[2][4], in_data[2][5]);
+        end_watching = new Date(in_data[2][0], in_data[2][1], in_data[2][2], in_data[2][3], in_data[2][4], in_data[2][5]);
     }
-    return func(els, start_watching);
+    return func(els, start_watching, end_watching);
 }
 '''
 
