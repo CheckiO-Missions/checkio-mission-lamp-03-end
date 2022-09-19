@@ -1,0 +1,191 @@
+<body data-author="Doppelok">
+<div class="question-answer">
+    <div class="question">
+        Я не знаю, як розпочати вирішення цієї місії
+    </div>
+    <div class="answer">
+        Ми почнемо з рішення, на якому закінчили минулу місію. Якщо ти її не вирішив ще, то ось посилання
+        <a href='https://py.checkio.org/en/mission/lightbulb-start-watching/'>Lightbulb Start Watching</a>. В цій місії логіка роботи
+        зміниться, через те що ми додамо ще одну змінну до умови - "end_watching". Це час до якого ми хочемо вирахувати скільки горіла
+        лампочка. Якщо його не передано функції, то розрахунок такий, як був у попередньому рішенні. Але тут уважно треба бути -
+        список з datetime об'єктами, який передаємо до функції може містити не парну кількість елементів.
+    </div>
+</div>
+<div class="question-answer">
+    <div class="question">
+        Мені потрібна допомога, щоб продовжити місію
+    </div>
+    <div class="answer">
+        Нагадаю тобі фінальний код минулої місії, а також тобі буде корисно прочитати трохи інформації про:
+        <a href='https://docs.python.org/3.10/library/datetime.html'>datetime</a> бібліотеку,
+        <a href='https://docs.python.org/3.10/library/functions.html#zip'>zip()</a>
+        (<a href='https://www.w3schools.com/python/ref_func_zip.asp'>приклад</a> ),
+        <a href='https://docs.python.org/3.10/library/functions.html#max'>max()</a>
+        (<a href='https://www.w3schools.com/python/ref_func_max.asp'>приклад</a> ),
+        <a href='https://docs.python.org/3.10/library/functions.html#min'>min()</a>
+        (<a href='https://www.w3schools.com/python/ref_func_min.asp'>приклад</a> ),
+        <a href='https://docs.python.org/3.10/library/functions.html#sum'>sum()</a>
+        (<a href='https://www.w3schools.com/python/ref_func_sum.asp'>приклад</a> ), та
+        <a href='https://docs.python.org/3.10/library/datetime.html?highlight=d%20total_seconds#datetime.timedelta.total_seconds'>datetime.total_seconds()</a>.
+        <pre class="brush: python">
+from datetime import datetime
+from typing import List, Optional
+
+
+def sum_light(els: List[datetime], start_watching: Optional[datetime] = None) -> int:
+    els_end = els[1::2]
+    els_start = els[0::2]
+    for i in enumerate(els_start):
+        if start_watching and start_watching > i[1]:
+            els_start[i[0]] = start_watching
+    return int(sum([(b - a).total_seconds() for a, b in zip(els_start, els_end)
+                    if (b - a).total_seconds() > 0]))
+        </pre>
+    </div>
+</div>
+<div class="question-answer">
+    <div class="question">
+        Потрібна допомога!
+    </div>
+    <div class="answer">
+        Модернізуємо наш код минулого рішення ще раз. На цей раз це буде капітальна модернізація. Перше що ми зробимо -
+        це відмовимося від нашого циклу for з перевіркою, та замінимо його на звичайну перевірку довжини списку з datetime
+        об'єктами, тому що по умові нам тепер може трапитись список без останнього часу вимкнення. Тож якщо таке трапиться -
+        додаємо до списку, на останню позицію, максимальний час за нашою умовою - "9999-12-31". Також в минулому рішенні
+        ми використали zip(els_start, els_end) в фінальному генераторі списку, тож просто визначимо це окремою змінною.
+        у нас по старому.
+    <pre class="brush: python">
+from datetime import datetime
+from typing import List
+
+def sum_light(els: List[datetime], start_watching: Optional[datetime] = None,
+        end_watching: Optional[datetime] = None) -> int:
+    els_end = els[1::2]
+    els_start = els[0::2]
+    if len(els_end) % 2 or len(els_end) == 0:
+        els_end.append(datetime(9999, 12, 31, 23, 59, 59))
+    els = zip(els_start, els_end)
+    # further abracadabra =)
+        </pre>
+  </div>
+</div>
+<div class="question-answer">
+    <div class="question">
+        Я вже не знаю що робити. Мені потрібна маленька підказка.
+    </div>
+    <div class="answer">
+        Починаємо нашу магію! Додамо до нашого рішення ще одну функцію, назвемо її "calc". В цій функції ми будемо вираховувати
+        різницю між включеннями та виключеннями. Вона нам знадобиться, щоб вирахувати час роботи лампочки, а також вона дозволить
+        уникнути довгих рядків коду. Якщо ти вже знаєш що там має бути, то здивуй мене! ;-Р
+    <pre class="brush: python">
+from datetime import datetime
+from typing import List, Optional
+
+
+def calc(a, b, start_watching, end_watching):
+        return None
+
+
+def sum_light(els: List[datetime], start_watching: Optional[datetime] = None,
+        end_watching: Optional[datetime] = None) -> int:
+    els_end = els[1::2]
+    els_start = els[0::2]
+    if len(els_end) % 2 or len(els_end) == 0:
+        els_end.append(datetime(9999, 12, 31, 23, 59, 59))
+    els = zip(els_start, els_end)
+    # further abracadabra =)
+        </pre>
+  </div>
+</div>
+<div class="question-answer">
+    <div class="question">
+        Нічого не працює. SOS
+    </div>
+    <div class="answer">
+        Отже, до нашої нової функції додамо вираз у якому за допомогою функцій min() та max() ми визначимо чи час ввімкнення/ вимкнення:
+        передано у списку (тобто, чи список парної довжини), час "start_watching"/ "end_watching" більший/менший за час ввімкнення/ вимкнення.
+    <pre class="brush: python">
+from datetime import datetime
+from typing import List, Optional
+
+
+def calc(a, b, start_watching, end_watching):
+    return (min(end_watching or b, b) - max(start_watching or a, a)).total_seconds()
+
+
+def sum_light(els: List[datetime], start_watching: Optional[datetime] = None,
+        end_watching: Optional[datetime] = None) -> int:
+    els_end = els[1::2]
+    els_start = els[0::2]
+    if len(els_end) % 2 or len(els_end) == 0:
+        els_end.append(datetime(9999, 12, 31, 23, 59, 59))
+    els = zip(els_start, els_end)
+    # further abracadabra =)
+        </pre>
+  </div>
+</div>
+<div class="question-answer">
+    <div class="question">
+        Не хочу здаватись, допоможи!
+    </div>
+    <div class="answer">
+        Тобі залишилось сформувати вираз "return", у якому ми за допомогою генератору списку повернемо результат розрахунку.
+
+    <pre class="brush: python">
+from datetime import datetime
+from typing import List, Optional
+
+
+def calc(a, b, start_watching, end_watching):
+    return (min(end_watching or b, b) - max(start_watching or a, a)).total_seconds()
+
+
+def sum_light(els: List[datetime], start_watching: Optional[datetime] = None,
+        end_watching: Optional[datetime] = None) -> int:
+    els_end = els[1::2]
+    els_start = els[0::2]
+    if len(els_end) % 2 or len(els_end) == 0:
+        els_end.append(datetime(9999, 12, 31, 23, 59, 59))
+    els = zip(els_start, els_end)
+    return int(sum([i for i in (calc(a, b, start_watching, end_watching) for a, b in els) if i > 0]))
+        </pre>
+        Може здатись трошки незрозумілий вираз генератору. "(calc(a, b, start_watching, end_watching) for a, b in els)"
+        - тут ми вираховуємо різницю кожного ввімкнення, а вже потім проходимось по результатам розрахунку і перевіряємо на i > 0. Це зроблено для того, щоб не виконувати
+        розрахунок різниці ще раз при перевірках в умові if.
+  </div>
+</div>
+<div class="question-answer">
+    <div class="question">
+        Я хочу бути кращим з кращих ПРОГРАМІСТІВ!!! ПОКАЖИ МЕНІ БІЛЬШЕ РІШЕНЬ!!1!!!11!
+    </div>
+    <div class="answer">
+        Добре, добре! Оце настрій!=)
+        Ось варіант де перевірки всіх ключових моментів виконанні у вигляді умов if. Повертаємо результат функції теж за
+        допомогою генератора списку.
+    <pre class="brush: python">
+from datetime import datetime
+from typing import List, Optional
+
+
+def sum_light(
+    els: List[datetime],
+    start_watching: Optional[datetime] = None,
+    end_watching: Optional[datetime] = None
+) -> int:
+    if len(els) % 2:
+        els.append(datetime.max)
+    if start_watching is None:
+        start_watching = els[0]
+    if end_watching is None:
+        end_watching = datetime.max
+    return sum(
+        (min(end_watching, els[i+1]) - max(start_watching, els[i])).total_seconds()
+        for i in range(0, len(els), 2)
+        if start_watching <= els[i+1] and end_watching >= els[i]
+    )
+        </pre>
+  </div>
+</div>
+
+
+</body>
