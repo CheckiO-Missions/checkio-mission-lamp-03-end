@@ -8,7 +8,7 @@
         <a href='https://py.checkio.org/en/mission/lightbulb-start-watching/'>Lightbulb Start Watching</a>. В цій місії логіка роботи
         зміниться, через те що ми додамо ще одну змінну до умови - "end_watching". Це час до якого ми хочемо вирахувати скільки горіла
         лампочка. Якщо його не передано функції, то розрахунок такий, як був у попередньому рішенні. Але тут уважно треба бути -
-        список з datetime об'єктами, який передаємо до функції може містити не парну кількість елементів.
+        список з datetime об'єктами, який передаємо до функції може містити непарну кількість елементів.
     </div>
 </div>
 <div class="question-answer">
@@ -26,7 +26,7 @@
         (<a href='https://www.w3schools.com/python/ref_func_min.asp'>приклад</a> ),
         <a href='https://docs.python.org/3.10/library/functions.html#sum'>sum()</a>
         (<a href='https://www.w3schools.com/python/ref_func_sum.asp'>приклад</a> ), та
-        <a href='https://docs.python.org/3.10/library/datetime.html?highlight=d%20total_seconds#datetime.timedelta.total_seconds'>datetime.total_seconds()</a>.
+        <a href='https://docs.python.org/3.10/library/datetime.html'>datetime.total_seconds()</a>.
         <pre class="brush: python">
 from datetime import datetime
 from typing import List, Optional
@@ -149,7 +149,7 @@ def sum_light(els: List[datetime], start_watching: Optional[datetime] = None,
     els = zip(els_start, els_end)
     return int(sum([i for i in (calc(a, b, start_watching, end_watching) for a, b in els) if i > 0]))
         </pre>
-        Може здатись трошки незрозумілий вираз генератору. "(calc(a, b, start_watching, end_watching) for a, b in els)"
+        Може здатись трошки незрозумілий вираз генератора. "(calc(a, b, start_watching, end_watching) for a, b in els)"
         - тут ми вираховуємо різницю кожного ввімкнення, а вже потім проходимось по результатам розрахунку і перевіряємо на i > 0. Це зроблено для того, щоб не виконувати
         розрахунок різниці ще раз при перевірках в умові if.
   </div>

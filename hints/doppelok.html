@@ -1,32 +1,34 @@
 <body data-author="Doppelok">
 <div class="question-answer">
     <div class="question">
-        Я не знаю, як розпочати вирішення цієї місії
+        I don't know how to start solving this mission
     </div>
     <div class="answer">
-        Ми почнемо з рішення, на якому закінчили минулу місію. Якщо ти її не вирішив ще, то ось посилання
-        <a href='https://py.checkio.org/en/mission/lightbulb-start-watching/'>Lightbulb Start Watching</a>. В цій місії логіка роботи
-        зміниться, через те що ми додамо ще одну змінну до умови - "end_watching". Це час до якого ми хочемо вирахувати скільки горіла
-        лампочка. Якщо його не передано функції, то розрахунок такий, як був у попередньому рішенні. Але тут уважно треба бути -
-        список з datetime об'єктами, який передаємо до функції може містити не парну кількість елементів.
+        We'll start with the solution where we ended the last mission. If you haven't solved it yet, here is the link
+        <a href='https://py.checkio.org/en/mission/lightbulb-start-watching/'>Lightbulb Start Watching</a>.
+        In this mission, the work logic will change because we will add another variable to the condition -
+        "end_watching". This is the time until which we want to calculate how long the light bulb was on. If
+        it is not passed to the function, then the calculation is as it was in the previous solution. But here
+        you have to be careful - the list with datetime objects that we pass to the function may contain an odd
+        number of elements.
     </div>
 </div>
 <div class="question-answer">
     <div class="question">
-        Мені потрібна допомога, щоб продовжити місію
+        I need help to continue the mission
     </div>
     <div class="answer">
-        Нагадаю тобі фінальний код минулої місії, а також тобі буде корисно прочитати трохи інформації про:
-        <a href='https://docs.python.org/3.10/library/datetime.html'>datetime</a> бібліотеку,
+        I will remind you of the final code of the last mission, and it will also be useful for you to read some information about:
+        <a href='https://docs.python.org/3.10/library/datetime.html'>datetime</a> module,
         <a href='https://docs.python.org/3.10/library/functions.html#zip'>zip()</a>
-        (<a href='https://www.w3schools.com/python/ref_func_zip.asp'>приклад</a> ),
+        (<a href='https://www.w3schools.com/python/ref_func_zip.asp'>example</a> ),
         <a href='https://docs.python.org/3.10/library/functions.html#max'>max()</a>
-        (<a href='https://www.w3schools.com/python/ref_func_max.asp'>приклад</a> ),
+        (<a href='https://www.w3schools.com/python/ref_func_max.asp'>example</a> ),
         <a href='https://docs.python.org/3.10/library/functions.html#min'>min()</a>
-        (<a href='https://www.w3schools.com/python/ref_func_min.asp'>приклад</a> ),
+        (<a href='https://www.w3schools.com/python/ref_func_min.asp'>example</a> ),
         <a href='https://docs.python.org/3.10/library/functions.html#sum'>sum()</a>
-        (<a href='https://www.w3schools.com/python/ref_func_sum.asp'>приклад</a> ), та
-        <a href='https://docs.python.org/3.10/library/datetime.html?highlight=d%20total_seconds#datetime.timedelta.total_seconds'>datetime.total_seconds()</a>.
+        (<a href='https://www.w3schools.com/python/ref_func_sum.asp'>example</a> ), and
+        <a href='https://docs.python.org/3.10/library/datetime.html'>datetime.total_seconds()</a>.
         <pre class="brush: python">
 from datetime import datetime
 from typing import List, Optional
@@ -45,15 +47,15 @@ def sum_light(els: List[datetime], start_watching: Optional[datetime] = None) ->
 </div>
 <div class="question-answer">
     <div class="question">
-        Потрібна допомога!
+        Need help!
     </div>
     <div class="answer">
-        Модернізуємо наш код минулого рішення ще раз. На цей раз це буде капітальна модернізація. Перше що ми зробимо -
-        це відмовимося від нашого циклу for з перевіркою, та замінимо його на звичайну перевірку довжини списку з datetime
-        об'єктами, тому що по умові нам тепер може трапитись список без останнього часу вимкнення. Тож якщо таке трапиться -
-        додаємо до списку, на останню позицію, максимальний час за нашою умовою - "9999-12-31". Також в минулому рішенні
-        ми використали zip(els_start, els_end) в фінальному генераторі списку, тож просто визначимо це окремою змінною.
-        у нас по старому.
+        Let's modernize our code from the previous solution once more. This time it will be a capital modernization.
+        The first thing we'll do is abandon our for loop with the check, and replace it with a simple check for the
+        length of a list of datetime objects, because by convention we can now have a list without a last shutdown
+        time. So if this happens - we add to the list, at the last position, the maximum time according to our
+        condition - "9999-12-31". Also, in the last solution we used zip(els_start, els_end) in the final list
+        generator, so we'll just define that as a separate variable. we have the old way.
     <pre class="brush: python">
 from datetime import datetime
 from typing import List
@@ -71,12 +73,13 @@ def sum_light(els: List[datetime], start_watching: Optional[datetime] = None,
 </div>
 <div class="question-answer">
     <div class="question">
-        Я вже не знаю що робити. Мені потрібна маленька підказка.
+        I don't know what to do anymore. I need a little hint.
     </div>
     <div class="answer">
-        Починаємо нашу магію! Додамо до нашого рішення ще одну функцію, назвемо її "calc". В цій функції ми будемо вираховувати
-        різницю між включеннями та виключеннями. Вона нам знадобиться, щоб вирахувати час роботи лампочки, а також вона дозволить
-        уникнути довгих рядків коду. Якщо ти вже знаєш що там має бути, то здивуй мене! ;-Р
+        Let's start our magic! Let's add one more function to our solution, let's call it "calc". In this function,
+        we will calculate the difference between inclusions and exclusions. We will need it to calculate the operating
+        time of the light bulb, and it will also allow us to avoid long lines of code. If you already know what should
+        be there, then surprise me! ;-R
     <pre class="brush: python">
 from datetime import datetime
 from typing import List, Optional
@@ -99,11 +102,12 @@ def sum_light(els: List[datetime], start_watching: Optional[datetime] = None,
 </div>
 <div class="question-answer">
     <div class="question">
-        Нічого не працює. SOS
+        Nothing works. SOS
     </div>
     <div class="answer">
-        Отже, до нашої нової функції додамо вираз у якому за допомогою функцій min() та max() ми визначимо чи час ввімкнення/ вимкнення:
-        передано у списку (тобто, чи список парної довжини), час "start_watching"/ "end_watching" більший/менший за час ввімкнення/ вимкнення.
+        So, to our new function, we will add an expression in which, using the min() and max() functions, we will
+        determine whether the on/off time: is passed in the list (ie, whether the list is of even length), the
+        "start_watching"/ "end_watching" time is greater/ less than the on/off time.
     <pre class="brush: python">
 from datetime import datetime
 from typing import List, Optional
@@ -126,10 +130,10 @@ def sum_light(els: List[datetime], start_watching: Optional[datetime] = None,
 </div>
 <div class="question-answer">
     <div class="question">
-        Не хочу здаватись, допоможи!
+        I don't want to give up, help!
     </div>
     <div class="answer">
-        Тобі залишилось сформувати вираз "return", у якому ми за допомогою генератору списку повернемо результат розрахунку.
+        All you have to do is form the "return" expression, in which we will return the result of the calculation using the list generator.
 
     <pre class="brush: python">
 from datetime import datetime
@@ -149,19 +153,19 @@ def sum_light(els: List[datetime], start_watching: Optional[datetime] = None,
     els = zip(els_start, els_end)
     return int(sum([i for i in (calc(a, b, start_watching, end_watching) for a, b in els) if i > 0]))
         </pre>
-        Може здатись трошки незрозумілий вираз генератору. "(calc(a, b, start_watching, end_watching) for a, b in els)"
-        - тут ми вираховуємо різницю кожного ввімкнення, а вже потім проходимось по результатам розрахунку і перевіряємо на i > 0. Це зроблено для того, щоб не виконувати
-        розрахунок різниці ще раз при перевірках в умові if.
+        The expression of the generator may seem a little unclear. "(calc(a, b, start_watching, end_watching)
+        for a, b in els)" - here we calculate the difference of each activation, and only then go through the
+        calculation results and check for i > 0. This is done in order not to perform calculating the difference
+        again when checking in the if condition.
   </div>
 </div>
 <div class="question-answer">
     <div class="question">
-        Я хочу бути кращим з кращих ПРОГРАМІСТІВ!!! ПОКАЖИ МЕНІ БІЛЬШЕ РІШЕНЬ!!1!!!11!
+        I want to be the best of the best PROGRAMMERS!!! SHOW ME MORE SOLUTIONS!!1!!!11!
     </div>
     <div class="answer">
-        Добре, добре! Оце настрій!=)
-        Ось варіант де перевірки всіх ключових моментів виконанні у вигляді умов if. Повертаємо результат функції теж за
-        допомогою генератора списку.
+        Okay, okay! That's the spirit!=)
+        Here is an option to check all key execution points in the form of if conditions. We also return the result of the function using the list generator.
     <pre class="brush: python">
 from datetime import datetime
 from typing import List, Optional
